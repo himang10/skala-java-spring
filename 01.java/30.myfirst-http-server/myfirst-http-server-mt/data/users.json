@@ -1,0 +1,21 @@
+[ {
+  "id" : 1,
+  "name" : "HongGilDong",
+  "email" : "hong@example.com",
+  "hobbies" : [ "검술", "전략" ]
+}, {
+  "id" : 2,
+  "name" : "KimYouShin",
+  "email" : "kim@example.com",
+  "hobbies" : [ "축구", "음악" ]
+}, {
+  "id" : 3,
+  "name" : "Yongwoo",
+  "email" : "himang10@example.com",
+  "hobbies" : [ "programming", "video" ]
+}, {
+  "id" : 4,
+  "name" : "skala",
+  "email" : "skala@example.com",
+  "hobbies" : [ "programming", "video" ]
+} ]

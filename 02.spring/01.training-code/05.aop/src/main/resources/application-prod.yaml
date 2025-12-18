@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-prod
+
+server:
+  port: 8080
+
+my:
+  info:
+    name: "skala099"
+    email: "skala099@gmail.com"
+    role: "operator"

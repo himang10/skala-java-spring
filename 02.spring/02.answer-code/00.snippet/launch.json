@@ -1,0 +1,73 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "01.hello-controller",
+            "request": "launch",
+            "mainClass": "com.sk.skala.hello.HelloApplication",
+            "projectName": "hello",
+            "cwd": "${workspaceFolder}/01.hello-controller"
+        },
+        {
+            "type": "java",
+            "name": "02.request",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample1.Sprintbootsample1Application",
+            "cwd": "${workspaceFolder}/02.request"
+        },
+        {
+            "type": "java",
+            "name": "03.validation",
+            "request": "launch",
+            "mainClass": "com.skala.examples.SpringbootExampleApplication",
+            "cwd": "${workspaceFolder}/03.validation"
+
+        },
+        {
+            "type": "java",
+            "name": "04.exception",
+            "request": "launch",
+            "mainClass": "com.skala.examples.SpringbootExceptApplication",
+            "cwd": "${workspaceFolder}/04.exception"
+        },
+        {
+            "type": "java",
+            "name": "07.reflection-spring",
+            "request": "launch",
+            "mainClass": "com.sk.skala.reflection.ReflectionApplication",
+            "cwd": "${workspaceFolder}/07.reflection-spring"
+        },
+        {
+            "type": "java",
+            "name": "08.aop",
+            "request": "launch",
+            "mainClass": "com.skala.springbootaopsample.SpringbootAopApplication",
+            "cwd": "${workspaceFolder}/08.aop"
+        },        
+        {
+            "type": "java",
+            "name": "09.cglibproxy",
+            "request": "launch",
+            "mainClass": "com.sk.skala.proxy.CglibProxyApplication",
+            "cwd": "${workspaceFolder}/09.cglibproxy"
+        },
+        {
+            "type": "java",
+            "name": "09.dynamicproxy",
+            "request": "launch",
+            "mainClass": "com.sk.skala.proxy.DynamicProxyApplication",
+            "cwd": "${workspaceFolder}/09.dynamicproxy"
+        },
+        {
+            "type": "java",
+            "name": "10.jpa",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.JPAApplication",
+            "cwd": "${workspaceFolder}/10.jpa"
+        }
+    ]
+}

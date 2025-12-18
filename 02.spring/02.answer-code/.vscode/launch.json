@@ -1,0 +1,154 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "HttpRequestJpaApplication",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestJpaApplication",
+            "projectName": "com.sk.skala-spring-boot-app"
+        },
+        {
+            "type": "java",
+            "name": "SprintbootsampleBaseApplication",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample1.SprintbootsampleBaseApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "HttpRequestSvcApplication",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "ValidationApplication",
+            "request": "launch",
+            "mainClass": "com.skala.examples.ValidationApplication",
+            "projectName": "com.skala-validating"
+        },
+        {
+            "type": "java",
+            "name": "HttpRequestApplication",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "SprintbootsampleApplication",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.SprintbootsampleApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "DemoApplication",
+            "request": "launch",
+            "mainClass": "com.skala.aop.demo.DemoApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "00.myapp",
+            "request": "launch",
+            "mainClass": "com.sk.skala.myapp.MyappApplication",
+            "cwd": "${workspaceFolder}/00.myapp"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ActuatorApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.ActuatorApplication",
+            "projectName": "com.sk.skala-actuator"
+        },
+        {
+            "type": "java",
+            "name": "HelloApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.hello.HelloApplication",
+            "projectName": "com.sk.skala-hello"
+        },
+        {
+            "type": "java",
+            "name": "MyappApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.myapp.MyappApplication",
+            "projectName": "com.sk.skala-myapp"
+        },
+        {
+            "type": "java",
+            "name": "CglibProxyApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.proxy.CglibProxyApplication",
+            "projectName": "com.sk.skala-proxy"
+        },
+        {
+            "type": "java",
+            "name": "ReflectionApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.reflection.ReflectionApplication",
+            "projectName": "com.sk.skala-reflection"
+        },
+        {
+            "type": "java",
+            "name": "JPAApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.JPAApplication",
+            "projectName": "com.sk.skala-spring-boot-app"
+        },
+        {
+            "type": "java",
+            "name": "SwaggerApplication",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.SwaggerApplication",
+            "projectName": "com.sk.skala-swagger"
+        },
+        {
+            "type": "java",
+            "name": "SpringbootExceptApplication",
+            "request": "launch",
+            "mainClass": "com.skala.examples.SpringbootExceptApplication",
+            "projectName": "com.skala-exception"
+        },
+        {
+            "type": "java",
+            "name": "MyappApplication(1)",
+            "request": "launch",
+            "mainClass": "com.skala.myapp.MyappApplication",
+            "projectName": "com.skala-myapp"
+        },
+        {
+            "type": "java",
+            "name": "Sprintbootsample1Application",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample1.Sprintbootsample1Application",
+            "projectName": "com.skala-skalaspringboot"
+        },
+        {
+            "type": "java",
+            "name": "SpringbootAopApplication",
+            "request": "launch",
+            "mainClass": "com.skala.springbootaopsample.SpringbootAopApplication",
+            "projectName": "com.skala-springbootaopsample"
+        },
+        {
+            "type": "java",
+            "name": "SpringbootExampleApplication",
+            "request": "launch",
+            "mainClass": "com.skala.examples.SpringbootExampleApplication",
+            "projectName": "com.skala-validating"
+        }
+    ]
+}

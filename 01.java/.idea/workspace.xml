@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08fc4f04-8a19-4920-8824-b860fd9da294" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/data/users.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/run.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/src/com/skala/purejava/http/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/src/com/skala/purejava/http/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/src/com/skala/purejava/http/repo/FileUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/src/com/skala/purejava/http/repo/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/30.phase1-myfirst-http-server/src/com/skala/purejava/http/util/JsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01.hellow-world/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/01.hellow-world/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03.switch/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/03.switch/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/30.skala-stock-console.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/data/players.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/data/stocks.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/PlayerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/PlayerStock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/SkalaStockMarket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/Stock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/StockConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/30.skala-stock-console.origin/src/StockRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/99.test/SampleTest1.java" beforeDir="false" afterPath="$PROJECT_DIR$/99.test/SampleTest1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-core/ThreadManagerJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-core/ThreadManagerJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloWorld/java/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HelloWorld/java/src/App.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="31OjV3KgJ5aSY7y6gzksE25b4j3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/himang10/mydev/skala/ywyi-skala-edu-code/backend/01.java/myfirst-http-server/src/com/skala/purejava/http",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/myfirst-http-server/src/com/skala/purejava/http" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="08fc4f04-8a19-4920-8824-b860fd9da294" name="Changes" comment="" />
+      <created>1755402033750</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755402033750</updated>
+      <workItem from="1755402034824" duration="1065000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

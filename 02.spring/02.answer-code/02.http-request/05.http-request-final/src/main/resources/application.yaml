@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    default: stage
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+springdoc:
+  swagger-ui:
+    path: /swagger/swagger-ui # Swagger UI 접속 경로 변경
+  api-docs:
+    path: /swagger/swagger-docs
+
+management:
+  server:
+    port: 8080 # Actuator 포트 설정
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Prometheus endpoint 노출
+  endpoint:
+    health:
+      probes:
+        enabled: true # LivenessState, ReadinessState 활성화
+  health:
+    livenessState:
+        enabled: true # LivenessState 활성화
+    readinessState:
+        enabled: true # ReadinessState 활성화
+  metrics:
+    enable:
+      all: true # 모든 기본 메트릭 활성화

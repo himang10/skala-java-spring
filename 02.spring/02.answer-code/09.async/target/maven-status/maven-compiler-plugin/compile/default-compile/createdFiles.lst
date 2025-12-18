@@ -1,0 +1,4 @@
+com/skala/async/AsyncApplication.class
+com/skala/async/controller/AsyncController.class
+com/skala/async/service/AsyncService.class
+com/skala/async/config/AsyncConfig.class

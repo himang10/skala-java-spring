@@ -1,0 +1,5 @@
+com/skala/aopanotation/annotation/Hint.class
+com/skala/aopanotation/service/HintService.class
+com/skala/aopanotation/controller/HintController.class
+com/skala/aopanotation/AopAnnotationApplication.class
+com/skala/aopanotation/aspect/HintAspect.class
