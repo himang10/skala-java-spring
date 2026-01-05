@@ -1,0 +1,5 @@
+com/skala/webclient/dto/Post.class
+com/skala/webclient/config/WebClientConfig.class
+com/skala/webclient/WebClientApplication.class
+com/skala/webclient/service/PostService.class
+com/skala/webclient/controller/PostController.class

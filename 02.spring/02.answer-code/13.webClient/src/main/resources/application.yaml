@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: webclient-demo
+
+# WebClient 설정
+webclient:
+  base-url: https://jsonplaceholder.typicode.com
+  timeout: 5000
+
+logging:
+  level:
+    root: INFO
+    com.skala: DEBUG
