@@ -9,7 +9,7 @@ public class SimpleEchoServer {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Echo Server started on port " + port);
 
-            while (true) {
+            //while (true) {
                 // 클라이언트 접속 대기
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Client connected: " + clientSocket.getInetAddress());
@@ -31,7 +31,7 @@ public class SimpleEchoServer {
                 }
 
                 clientSocket.close();
-            }
+            //}
         } catch (IOException e) {
             e.printStackTrace();
         }

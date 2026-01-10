@@ -4,151 +4,242 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // 01. Hello Controller
         {
             "type": "java",
-            "name": "HttpRequestJpaApplication",
+            "name": "01. Hello Controller",
             "request": "launch",
-            "mainClass": "com.skala.springbootsample.HttpRequestJpaApplication",
-            "projectName": "com.sk.skala-spring-boot-app"
+            "mainClass": "com.sk.skala.hello.HelloApplication",
+            "projectName": "hello",
+            "cwd": "${workspaceFolder}/01.hello-controller"
         },
+        
+        // 02. HTTP Request Projects
         {
             "type": "java",
-            "name": "SprintbootsampleBaseApplication",
+            "name": "02-01. HTTP Request Base",
             "request": "launch",
             "mainClass": "com.skala.springbootsample1.SprintbootsampleBaseApplication",
-            "projectName": ""
+            "projectName": "skalaspringboot",
+            "cwd": "${workspaceFolder}/02.http-request/01.http-request-base"
         },
         {
             "type": "java",
-            "name": "HttpRequestSvcApplication",
+            "name": "02-02. HTTP Request Service",
             "request": "launch",
             "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
-            "projectName": ""
+            "projectName": "skalaspringboot",
+            "cwd": "${workspaceFolder}/02.http-request/02.http-request-svc"
         },
         {
             "type": "java",
-            "name": "ValidationApplication",
+            "name": "02-03. HTTP Request Properties",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
+            "projectName": "skalaspringboot",
+            "cwd": "${workspaceFolder}/02.http-request/03.http-request-properties"
+        },
+        {
+            "type": "java",
+            "name": "02-04-1. HTTP Request Repo User",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
+            "projectName": "spring-boot-app",
+            "cwd": "${workspaceFolder}/02.http-request/04-1.http-request-repo-user"
+        },
+        {
+            "type": "java",
+            "name": "02-04-2. HTTP Request Repo Region",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
+            "projectName": "spring-boot-app",
+            "cwd": "${workspaceFolder}/02.http-request/04-2.http-request-repo-region"
+        },
+        {
+            "type": "java",
+            "name": "02-04-3. HTTP Request Repo ManyToOne",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
+            "projectName": "spring-boot-app",
+            "cwd": "${workspaceFolder}/02.http-request/04-3.http-request-repo-mto"
+        },
+        {
+            "type": "java",
+            "name": "02-04-4. HTTP Request Repo OneToMany",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestSvcApplication",
+            "projectName": "spring-boot-app",
+            "cwd": "${workspaceFolder}/02.http-request/04-4.http-request-repo-otm"
+        },
+        {
+            "type": "java",
+            "name": "02-05. HTTP Request Final",
+            "request": "launch",
+            "mainClass": "com.skala.springbootsample.HttpRequestJpaApplication",
+            "projectName": "spring-boot-app",
+            "cwd": "${workspaceFolder}/02.http-request/05.http-request-final"
+        },
+
+        // 03. Validation
+        {
+            "type": "java",
+            "name": "03. Validation",
             "request": "launch",
             "mainClass": "com.skala.examples.ValidationApplication",
-            "projectName": "com.skala-validating"
+            "projectName": "validating",
+            "cwd": "${workspaceFolder}/03.validation"
         },
+
+        // 04. Exception
         {
             "type": "java",
-            "name": "HttpRequestApplication",
+            "name": "04. Exception Handling",
             "request": "launch",
-            "mainClass": "com.skala.springbootsample.HttpRequestApplication",
-            "projectName": ""
+            "mainClass": "com.skala.examples.SpringbootExceptApplication",
+            "projectName": "exception",
+            "cwd": "${workspaceFolder}/04.exception"
         },
+
+        // 07. Reflection Spring
         {
             "type": "java",
-            "name": "SprintbootsampleApplication",
+            "name": "07. Reflection Spring",
             "request": "launch",
-            "mainClass": "com.skala.springbootsample.SprintbootsampleApplication",
-            "projectName": ""
+            "mainClass": "com.sk.skala.reflection.ReflectionApplication",
+            "projectName": "reflection",
+            "cwd": "${workspaceFolder}/07.reflection-spring"
+        },
+
+        // 08. AOP
+        {
+            "type": "java",
+            "name": "08. AOP",
+            "request": "launch",
+            "mainClass": "com.skala.springbootaopsample.SpringbootAopApplication",
+            "projectName": "springbootaopsample",
+            "cwd": "${workspaceFolder}/08.aop"
         },
         {
             "type": "java",
-            "name": "DemoApplication",
+            "name": "08. AOP Annotation",
+            "request": "launch",
+            "mainClass": "com.skala.aopannotation.AopAnnotationApplication",
+            "projectName": "springbootaopannotationsample",
+            "cwd": "${workspaceFolder}/08.aop-annotation"
+        },
+
+        // 09. Async
+        {
+            "type": "java",
+            "name": "09. Async",
+            "request": "launch",
+            "mainClass": "com.skala.async.AsyncApplication",
+            "projectName": "springbootasyncsample",
+            "cwd": "${workspaceFolder}/09.async"
+        },
+
+        // 09. Proxy
+        {
+            "type": "java",
+            "name": "09-01. User Proxy",
+            "request": "launch",
+            "mainClass": "com.skala.myapp.HttpRequestSvcApplication",
+            "projectName": "skalaspringboot",
+            "cwd": "${workspaceFolder}/09.proxy/01.userProxy"
+        },
+        {
+            "type": "java",
+            "name": "09-02. JDK Dynamic Proxy",
+            "request": "launch",
+            "mainClass": "com.sk.skala.proxy.DynamicProxyApplication",
+            "projectName": "proxy",
+            "cwd": "${workspaceFolder}/09.proxy/02.jdkproxy"
+        },
+        {
+            "type": "java",
+            "name": "09-03. CGLIB Proxy",
+            "request": "launch",
+            "mainClass": "com.sk.skala.proxy.DynamicProxyApplication",
+            "projectName": "proxy",
+            "cwd": "${workspaceFolder}/09.proxy/03.cglibproxy"
+        },
+
+        // 10. JPA
+        {
+            "type": "java",
+            "name": "10. JPA",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.JPAApplication",
+            "projectName": "spring-boot-app",
+            "cwd": "${workspaceFolder}/10.jpa"
+        },
+
+        // 11. Swagger
+        {
+            "type": "java",
+            "name": "11. Swagger",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.SwaggerApplication",
+            "projectName": "swagger",
+            "cwd": "${workspaceFolder}/11.swagger"
+        },
+
+        // 12. Actuator
+        {
+            "type": "java",
+            "name": "12. Actuator",
+            "request": "launch",
+            "mainClass": "com.sk.skala.jpasample.ActuatorApplication",
+            "projectName": "actuator",
+            "cwd": "${workspaceFolder}/12.actuator"
+        },
+
+        // 13. WebClient
+        {
+            "type": "java",
+            "name": "13. WebClient",
+            "request": "launch",
+            "mainClass": "com.skala.webclient.WebClientApplication",
+            "projectName": "webclient-demo",
+            "cwd": "${workspaceFolder}/13.webClient"
+        },
+
+        // AOP JoinPoint Demo
+        {
+            "type": "java",
+            "name": "AOP JoinPoint Demo",
             "request": "launch",
             "mainClass": "com.skala.aop.demo.DemoApplication",
-            "projectName": ""
+            "projectName": "demo",
+            "cwd": "${workspaceFolder}/aop-joinpoint-demo"
         },
+
+        // First MyApp
         {
             "type": "java",
-            "name": "00.myapp",
+            "name": "First MyApp",
             "request": "launch",
-            "mainClass": "com.sk.skala.myapp.MyappApplication",
-            "cwd": "${workspaceFolder}/00.myapp"
+            "mainClass": "com.skala.myapp.MyappApplication",
+            "projectName": "myapp",
+            "cwd": "${workspaceFolder}/first-myapp/myapp"
         },
+
+        // Skala Spring Basic
+        {
+            "type": "java",
+            "name": "Skala Spring Basic",
+            "request": "launch",
+            "mainClass": "com.skala.basic.BasicApplication",
+            "projectName": "basic",
+            "cwd": "${workspaceFolder}/skala-spring-basic"
+        },
+
+        // Current File (유틸리티)
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "ActuatorApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.jpasample.ActuatorApplication",
-            "projectName": "com.sk.skala-actuator"
-        },
-        {
-            "type": "java",
-            "name": "HelloApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.hello.HelloApplication",
-            "projectName": "com.sk.skala-hello"
-        },
-        {
-            "type": "java",
-            "name": "MyappApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.myapp.MyappApplication",
-            "projectName": "com.sk.skala-myapp"
-        },
-        {
-            "type": "java",
-            "name": "CglibProxyApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.proxy.CglibProxyApplication",
-            "projectName": "com.sk.skala-proxy"
-        },
-        {
-            "type": "java",
-            "name": "ReflectionApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.reflection.ReflectionApplication",
-            "projectName": "com.sk.skala-reflection"
-        },
-        {
-            "type": "java",
-            "name": "JPAApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.jpasample.JPAApplication",
-            "projectName": "com.sk.skala-spring-boot-app"
-        },
-        {
-            "type": "java",
-            "name": "SwaggerApplication",
-            "request": "launch",
-            "mainClass": "com.sk.skala.jpasample.SwaggerApplication",
-            "projectName": "com.sk.skala-swagger"
-        },
-        {
-            "type": "java",
-            "name": "SpringbootExceptApplication",
-            "request": "launch",
-            "mainClass": "com.skala.examples.SpringbootExceptApplication",
-            "projectName": "com.skala-exception"
-        },
-        {
-            "type": "java",
-            "name": "MyappApplication(1)",
-            "request": "launch",
-            "mainClass": "com.skala.myapp.MyappApplication",
-            "projectName": "com.skala-myapp"
-        },
-        {
-            "type": "java",
-            "name": "Sprintbootsample1Application",
-            "request": "launch",
-            "mainClass": "com.skala.springbootsample1.Sprintbootsample1Application",
-            "projectName": "com.skala-skalaspringboot"
-        },
-        {
-            "type": "java",
-            "name": "SpringbootAopApplication",
-            "request": "launch",
-            "mainClass": "com.skala.springbootaopsample.SpringbootAopApplication",
-            "projectName": "com.skala-springbootaopsample"
-        },
-        {
-            "type": "java",
-            "name": "SpringbootExampleApplication",
-            "request": "launch",
-            "mainClass": "com.skala.examples.SpringbootExampleApplication",
-            "projectName": "com.skala-validating"
         }
     ]
 }
