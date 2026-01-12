@@ -1,4 +1,4 @@
-package com.skala.aopanotation;
+package com.skala.aopannotation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
