@@ -1,6 +1,6 @@
-package com.skala.aopanotation.controller;
+package com.skala.aopannotation.controller;
 
-import com.skala.aopanotation.service.HintService;
+import com.skala.aopannotation.service.HintService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

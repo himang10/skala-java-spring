@@ -1,5 +1,5 @@
-/Users/himang10/mydev/skala/ywyi-skala-edu-code/backend/02.spring/02.old-code/08.aop-annotation/src/main/java/com/skala/aopannotation/AopAnnotationApplication.java
-/Users/himang10/mydev/skala/ywyi-skala-edu-code/backend/02.spring/02.old-code/08.aop-annotation/src/main/java/com/skala/aopannotation/annotation/Hint.java
-/Users/himang10/mydev/skala/ywyi-skala-edu-code/backend/02.spring/02.old-code/08.aop-annotation/src/main/java/com/skala/aopannotation/aspect/HintAspect.java
-/Users/himang10/mydev/skala/ywyi-skala-edu-code/backend/02.spring/02.old-code/08.aop-annotation/src/main/java/com/skala/aopannotation/controller/HintController.java
-/Users/himang10/mydev/skala/ywyi-skala-edu-code/backend/02.spring/02.old-code/08.aop-annotation/src/main/java/com/skala/aopannotation/service/HintService.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/01.training-code/06.aop-annotation/src/main/java/com/skala/aopannotation/AopAnnotationApplication.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/01.training-code/06.aop-annotation/src/main/java/com/skala/aopannotation/annotation/Hint.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/01.training-code/06.aop-annotation/src/main/java/com/skala/aopannotation/aspect/HintAspect.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/01.training-code/06.aop-annotation/src/main/java/com/skala/aopannotation/controller/HintController.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/01.training-code/06.aop-annotation/src/main/java/com/skala/aopannotation/service/HintService.java

@@ -75,6 +75,8 @@ public class AsyncController {
         CompletableFuture<String> future1 = asyncService.asyncMethodWithReturn("작업1");
         CompletableFuture<String> future2 = asyncService.asyncMethodWithReturn("작업2");
         CompletableFuture<String> future3 = asyncService.asyncMethodWithReturn("작업3");
+
+        log.info ("return CompletableFuture.allOf(future1, future2, future3)");
         
         // 모든 비동기 작업이 완료될 때까지 대기하고 결과 조합
         return CompletableFuture.allOf(future1, future2, future3)

@@ -1,6 +1,6 @@
-package com.skala.aopanotation.aspect;
+package com.skala.aopannotation.aspect;
 
-import com.skala.aopanotation.annotation.Hint;
+import com.skala.aopannotation.annotation.Hint;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
