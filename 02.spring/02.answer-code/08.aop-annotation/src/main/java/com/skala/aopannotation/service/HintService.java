@@ -1,6 +1,6 @@
-package com.skala.aopanotation.service;
+package com.skala.aopannotation.service;
 
-import com.skala.aopanotation.annotation.Hint;
+import com.skala.aopannotation.annotation.Hint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
