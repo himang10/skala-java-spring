@@ -29,10 +29,15 @@ public class WebClientConfig {
     public WebClient webClient() {
         // HttpClient 설정 (타임아웃 등)
         HttpClient httpClient = HttpClient.create()
+                // 서버 연결 수립 제한 시간
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, timeout)
+                // 전체 응답 완료 제한 시간
                 .responseTimeout(Duration.ofMillis(timeout))
+                // 연결 성공 시 핸들러 추가
                 .doOnConnected(conn ->
+                        // 데이터 읽기 제한 시간 (서버 응답 지연 방지)
                         conn.addHandlerLast(new ReadTimeoutHandler(timeout, TimeUnit.MILLISECONDS))
+                                // 데이터 쓰기 제한 시간 (요청 전송 지연 방지)
                                 .addHandlerLast(new WriteTimeoutHandler(timeout, TimeUnit.MILLISECONDS)));
 
         return WebClient.builder()

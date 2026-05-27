@@ -57,8 +57,8 @@ public class PostService {
                 .uri("/posts")
                 .retrieve()
                 .bodyToFlux(Post.class)
-                .doOnNext(post -> log.debug("Post 수신: {}", post.getId()))
-                .doOnComplete(() -> log.info("Flux 조회 완료"))
-                .doOnError(error -> log.error("Flux 조회 실패", error));
+                .doOnNext(post -> log.debug("Post 수신: {}", post.getId()))     // 각 데이터 수신시
+                .doOnComplete(() -> log.info("Flux 조회 완료"))                 // 정상 완료 시
+                .doOnError(error -> log.error("Flux 조회 실패", error));        // 에러 발생 시 
     }
 }

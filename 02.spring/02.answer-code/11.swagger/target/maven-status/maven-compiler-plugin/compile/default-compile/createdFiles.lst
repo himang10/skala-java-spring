@@ -1,0 +1,10 @@
+com/sk/skala/jpasample/model/Department$DepartmentBuilder.class
+com/sk/skala/jpasample/model/Employee$EmployeeBuilder.class
+com/sk/skala/jpasample/service/EmployeeService.class
+com/sk/skala/jpasample/model/Employee.class
+com/sk/skala/jpasample/repository/DepartmentRepository.class
+com/sk/skala/jpasample/SwaggerApplication.class
+com/sk/skala/jpasample/repository/EmployeeRepository.class
+com/sk/skala/jpasample/model/Department.class
+com/sk/skala/jpasample/controller/EmployeeController.class
+com/sk/skala/jpasample/service/DepartmentService.class

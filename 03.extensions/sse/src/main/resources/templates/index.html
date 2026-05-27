@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE 교육 데모</title>
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --card: #ffffff;
+            --ink: #1f2a37;
+            --muted: #6b7280;
+            --line: #dde3ec;
+            --brand: #1357dd;
+            --ok: #0f9d58;
+            --warn: #f39c12;
+            --err: #e53935;
+            --accent: #6f42c1;
+            --accent-2: #374151;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: radial-gradient(circle at 20% 0%, #ffffff 0%, var(--bg) 60%, #eef2f9 100%);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px;
+            background: linear-gradient(90deg, #0b3aa8, #1357dd);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(11, 58, 168, 0.22);
+        }
+
+        header h1 { font-size: 1.3rem; }
+        header p { opacity: 0.9; margin-top: 6px; font-size: 0.92rem; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .panel-header {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .step-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background: var(--brand);
+            font-size: 0.76rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .panel-body { padding: 12px 14px; }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fbff;
+            border: 1px solid #d6e4ff;
+            padding: 8px 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #aab3c5;
+        }
+
+        .dot.connecting { background: var(--warn); animation: pulse 1s infinite; }
+        .dot.connected { background: var(--ok); }
+        .dot.disconnected { background: var(--err); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .form-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        label { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 80px;
+            border: 1px solid #ccd7ea;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        input[type="text"]:focus { border-color: var(--brand); }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        button:hover { opacity: 0.9; }
+        button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .btn-connect { background: var(--brand); }
+        .btn-disconnect { background: var(--err); }
+        .btn-send { background: var(--ok); }
+        .btn-broadcast { background: var(--accent); }
+        .btn-clear { background: var(--accent-2); }
+        .btn-force-dc { background: var(--warn); }
+
+        .log-console {
+            height: 260px;
+            overflow-y: auto;
+            border: 1px solid #dce4f3;
+            border-radius: 8px;
+            background: #f9fbff;
+            padding: 8px;
+            font-family: Consolas, monospace;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .log-entry { padding: 1px 0; }
+        .log-time { color: var(--muted); }
+        .log-info { color: var(--brand); }
+        .log-success { color: var(--ok); }
+        .log-warn { color: var(--warn); }
+        .log-error { color: var(--err); }
+        .log-event { color: var(--accent); }
+        .log-data { color: #0f7a46; }
+        .log-proto { color: #0b79d0; }
+
+        .event-visual {
+            height: 260px;
+            overflow-y: auto;
+            border: 1px solid #dce4f3;
+            border-radius: 8px;
+            background: #f9fbff;
+            padding: 8px;
+            font-family: Consolas, monospace;
+            font-size: 0.75rem;
+        }
+
+        .event-block {
+            border: 1px solid #dce4f3;
+            border-radius: 8px;
+            background: #fff;
+            padding: 7px;
+            margin-bottom: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .event-line { display: flex; gap: 8px; }
+        .event-key { color: #0b79d0; width: 60px; flex-shrink: 0; }
+        .event-val { color: #0f7a46; }
+        .event-sep { color: var(--muted); font-style: italic; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .stat-box {
+            border: 1px solid #dce4f3;
+            border-radius: 8px;
+            background: #fff;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .stat-num { font-size: 1.3rem; font-weight: 800; color: var(--brand); }
+        .stat-label { font-size: 0.72rem; color: var(--muted); }
+
+        .full-width { grid-column: 1 / -1; }
+
+        .protocol-guide {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 14px;
+        }
+
+        .guide-step {
+            background: #f8fbff;
+            border: 1px solid #dce4f3;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .guide-step h3 {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guide-step pre {
+            background: #f1f5fb;
+            border: 1px solid #dce4f3;
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 0.7rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            color: var(--muted);
+            overflow: auto;
+        }
+
+        .highlight { color: #0b79d0; }
+        .highlight2 { color: var(--ok); }
+        .highlight3 { color: var(--warn); }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .protocol-guide { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SSE (Server-Sent Events) 교육 데모</h1>
+    <p>단계별로 SSE 연결 과정 · 정상 통신 · 재연결 메커니즘을 직접 테스트하세요</p>
+</header>
+
+<div class="container">
+
+    <!-- =====================================================================
+         [단계 1] SSE 연결 수립
+         ===================================================================== -->
+    <div class="panel">
+        <div class="panel-header">
+            <span class="step-badge">1</span>
+            SSE 연결 수립
+        </div>
+        <div class="panel-body">
+
+            <div class="status-bar">
+                <div class="dot" id="statusDot"></div>
+                <span id="statusText">연결 안됨</span>
+                <span style="margin-left:auto; color:var(--muted); font-size:0.75rem" id="clientIdDisplay"></span>
+            </div>
+
+            <div class="form-row">
+                <label>클라이언트 ID</label>
+                <input type="text" id="clientId" value="user-001" placeholder="클라이언트 ID">
+                <button class="btn-connect" id="btnConnect" onclick="connectSSE()">연결</button>
+                <button class="btn-disconnect" id="btnDisconnect" onclick="disconnectSSE()" disabled>끊기</button>
+            </div>
+
+            <div class="log-console" id="connectionLog">
+                <div class="log-entry log-info">── SSE 연결 로그 ──</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-num" id="statReconnect">0</div>
+                    <div class="stat-label">재연결 횟수</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="statLastEventId">-</div>
+                    <div class="stat-label">Last-Event-ID</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="statConnectTime">-</div>
+                    <div class="stat-label">연결 시간(초)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         SSE 이벤트 구조 시각화
+         ===================================================================== -->
+    <div class="panel">
+        <div class="panel-header">
+            <span class="step-badge" style="background:#6f42c1">∿</span>
+            SSE 이벤트 스트림 (수신 원문 구조)
+            <button class="btn-clear" style="margin-left:auto; padding:4px 10px; font-size:0.7rem"
+                    onclick="clearEvents()">지우기</button>
+        </div>
+        <div class="panel-body">
+            <div class="event-visual" id="eventVisual">
+                <div style="color:var(--muted); font-size:0.75rem; padding:6px;">
+                    연결하면 수신되는 SSE 이벤트가 여기에 표시됩니다.
+                </div>
+            </div>
+            <div class="stats" style="margin-top:10px;">
+                <div class="stat-box">
+                    <div class="stat-num" id="statTotal">0</div>
+                    <div class="stat-label">수신 이벤트 수</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="statMessages">0</div>
+                    <div class="stat-label">메시지</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="statHeartbeats">0</div>
+                    <div class="stat-label">Heartbeat</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         [단계 2] 정상 통신 테스트
+         ===================================================================== -->
+    <div class="panel">
+        <div class="panel-header">
+            <span class="step-badge" style="background:#0f9d58">2</span>
+            연결 후 정상 통신
+        </div>
+        <div class="panel-body">
+
+            <div class="form-row">
+                <label>메시지</label>
+                <input type="text" id="msgInput" value="Hello SSE!" placeholder="전송할 메시지">
+                <button class="btn-send" onclick="sendMessage()">단일 전송</button>
+                <button class="btn-broadcast" onclick="broadcast()">브로드캐스트</button>
+            </div>
+
+            <div class="log-console" id="commLog">
+                <div class="log-entry log-info">── 통신 로그 ──</div>
+            </div>
+
+            <div style="margin-top:10px; font-size:0.75rem; color:var(--muted); line-height:1.6;">
+                <strong style="color:var(--ink)">단일 전송:</strong> 지정 클라이언트에게만 전송<br>
+                <strong style="color:var(--ink)">브로드캐스트:</strong> 연결된 모든 클라이언트에게 전송
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         [단계 3] 연결 끊김 & 재연결 테스트
+         ===================================================================== -->
+    <div class="panel">
+        <div class="panel-header">
+            <span class="step-badge" style="background:#f39c12">3</span>
+            연결 끊김 &amp; 재연결 (자동)
+        </div>
+        <div class="panel-body">
+
+            <div class="form-row">
+                <button class="btn-force-dc" onclick="forceDisconnect()">서버에서 강제 종료</button>
+                <span style="font-size:0.75rem; color:var(--muted);">→ EventSource 자동 재연결 관찰</span>
+            </div>
+
+            <div class="log-console" id="reconnectLog">
+                <div class="log-entry log-info">── 재연결 로그 ──</div>
+            </div>
+
+            <div style="margin-top:10px; font-size:0.75rem; color:var(--muted); line-height:1.8;">
+                <strong style="color:var(--ink)">재연결 동작 순서:</strong><br>
+                1. "서버에서 강제 종료" 클릭<br>
+                2. 서버: <code style="color:#0b79d0">emitter.complete()</code> 호출<br>
+                3. 브라우저 EventSource: 연결 끊김 감지<br>
+                4. 약 3초 후 자동 재연결 시도<br>
+                5. <code style="color:#f39c12">Last-Event-ID</code> 헤더로 마지막 이벤트 ID 전송
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         SSE 프로토콜 가이드 (전체 너비)
+         ===================================================================== -->
+    <div class="panel full-width">
+        <div class="panel-header">
+            <span class="step-badge" style="background:#374151">?</span>
+            SSE 프로토콜 핵심 개념
+        </div>
+        <div class="protocol-guide">
+
+            <div class="guide-step">
+                <h3><span class="step-badge" style="width:18px;height:18px;font-size:0.65rem">1</span>
+                    연결 수립 - HTTP 요청/응답</h3>
+                <pre>
+<span class="highlight">▶ 클라이언트 요청 (브라우저)</span>
+GET /sse/connect/user-001 HTTP/1.1
+Accept: text/event-stream
+Cache-Control: no-cache
+Last-Event-ID: 5       ← 재연결 시만 포함
+
+<span class="highlight2">▶ 서버 응답 헤더</span>
+HTTP/1.1 200 OK
+Content-Type: text/event-stream
+Cache-Control: no-cache
+Connection: keep-alive
+                </pre>
+            </div>
+
+            <div class="guide-step">
+                <h3><span class="step-badge" style="width:18px;height:18px;font-size:0.65rem">2</span>
+                    정상 통신 - SSE 이벤트 구조</h3>
+                <pre>
+<span class="highlight">▶ SSE 이벤트 와이어 포맷</span>
+id: 7
+event: message
+data: {"type":"message","data":"Hello"}
+
+<span class="highlight3">← 빈 줄이 이벤트 종료를 나타냄</span>
+
+<span class="highlight2">▶ 여러 줄 데이터</span>
+id: 8
+event: message
+data: line 1
+data: line 2
+
+                </pre>
+            </div>
+
+            <div class="guide-step">
+                <h3><span class="step-badge" style="width:18px;height:18px;font-size:0.65rem">3</span>
+                    재연결 - EventSource 자동 복구</h3>
+                <pre>
+<span class="highlight">▶ 재연결 흐름</span>
+1. 서버: emitter.complete() 호출
+   → HTTP 스트림 종료
+
+2. 브라우저 EventSource:
+   - readyState = CONNECTING
+   - 재연결 대기 (기본 3초)
+
+3. 재연결 요청:
+   GET /sse/connect/user-001
+   Last-Event-ID: 7   ← 자동 포함
+
+<span class="highlight2">4. 서버: 마지막 ID 이후 이벤트 재전송</span>
+                </pre>
+            </div>
+
+        </div>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+// ============================================================
+// 전역 상태
+// ============================================================
+let eventSource = null;
+let reconnectCount = 0;
+let lastEventId = null;
+let connectStartTime = null;
+let connectTimer = null;
+let totalEvents = 0;
+let messageCount = 0;
+let heartbeatCount = 0;
+
+// ============================================================
+// 유틸: 로그 출력
+// ============================================================
+function now() {
+    return new Date().toLocaleTimeString('ko-KR', { hour12: false,
+        hour:'2-digit', minute:'2-digit', second:'2-digit',
+        fractionalSecondDigits: 3 });
+}
+
+function appendLog(containerId, text, cls = 'log-info') {
+    const el = document.getElementById(containerId);
+    const div = document.createElement('div');
+    div.className = `log-entry ${cls}`;
+    div.innerHTML = `<span class="log-time">${now()}</span> ${text}`;
+    el.appendChild(div);
+    el.scrollTop = el.scrollHeight;
+}
+
+function appendEventBlock(type, id, data) {
+    const el = document.getElementById('eventVisual');
+
+    // 처음 안내 문구 제거
+    const placeholder = el.querySelector('div[style]');
+    if (placeholder) el.removeChild(placeholder);
+
+    const colors = {
+        connected: '#0f9d58',
+        message:   '#1357dd',
+        heartbeat: '#f39c12',
+        error:     '#e53935'
+    };
+    const color = colors[type] || '#6b7280';
+
+    const block = document.createElement('div');
+    block.className = 'event-block';
+    block.innerHTML = `
+        <div class="event-line">
+            <span class="event-key">id:</span>
+            <span class="event-val">${id}</span>
+        </div>
+        <div class="event-line">
+            <span class="event-key">event:</span>
+            <span style="color:${color}">${type}</span>
+        </div>
+        <div class="event-line">
+            <span class="event-key">data:</span>
+            <span class="event-val">${escapeHtml(data)}</span>
+        </div>
+        <div class="event-sep">↑ 빈 줄로 이벤트 종료</div>
+    `;
+    el.appendChild(block);
+    el.scrollTop = el.scrollHeight;
+}
+
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+// ============================================================
+// 상태 업데이트
+// ============================================================
+function setStatus(state) {
+    const dot = document.getElementById('statusDot');
+    const txt = document.getElementById('statusText');
+    dot.className = 'dot ' + state;
+    const labels = { connecting: '연결 중...', connected: '연결됨', disconnected: '연결 끊김' };
+    txt.textContent = labels[state] || '연결 안됨';
+}
+
+function updateStats() {
+    document.getElementById('statReconnect').textContent = reconnectCount;
+    document.getElementById('statLastEventId').textContent = lastEventId ?? '-';
+    document.getElementById('statTotal').textContent = totalEvents;
+    document.getElementById('statMessages').textContent = messageCount;
+    document.getElementById('statHeartbeats').textContent = heartbeatCount;
+}
+
+function startTimer() {
+    connectStartTime = Date.now();
+    connectTimer = setInterval(() => {
+        const sec = Math.floor((Date.now() - connectStartTime) / 1000);
+        document.getElementById('statConnectTime').textContent = sec;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(connectTimer);
+    document.getElementById('statConnectTime').textContent = '-';
+}
+
+// ============================================================
+// [단계 1] SSE 연결
+// ============================================================
+function connectSSE() {
+    const clientId = document.getElementById('clientId').value.trim();
+    if (!clientId) { alert('클라이언트 ID를 입력하세요'); return; }
+
+    if (eventSource) {
+        eventSource.close();
+        eventSource = null;
+    }
+
+    document.getElementById('clientIdDisplay').textContent = clientId;
+    setStatus('connecting');
+
+    appendLog('connectionLog',
+        `▶ <span class="highlight">GET</span> /sse/connect/${clientId} 요청 (text/event-stream)`, 'log-proto');
+
+    // EventSource 생성 → 브라우저가 SSE 연결 수립
+    eventSource = new EventSource(`/sse/connect/${clientId}`);
+
+    // --- connected 이벤트 ---
+    eventSource.addEventListener('connected', (e) => {
+        setStatus('connected');
+        startTimer();
+        lastEventId = e.lastEventId || e.data?.lastEventId;
+        totalEvents++;
+        updateStats();
+
+        appendLog('connectionLog',
+            `✅ <span class="highlight2">connected</span> 이벤트 수신 | id=${e.lastEventId} | data=${e.data}`,
+            'log-success');
+
+        appendEventBlock('connected', e.lastEventId, e.data);
+
+        document.getElementById('btnConnect').disabled = true;
+        document.getElementById('btnDisconnect').disabled = false;
+    });
+
+    // --- message 이벤트 ---
+    eventSource.addEventListener('message', (e) => {
+        lastEventId = e.lastEventId;
+        totalEvents++;
+        messageCount++;
+        updateStats();
+
+        appendLog('commLog',
+            `📨 <span class="highlight">message</span> 수신 | id=${e.lastEventId} | data=${e.data}`,
+            'log-data');
+        appendEventBlock('message', e.lastEventId, e.data);
+    });
+
+    // --- heartbeat 이벤트 ---
+    eventSource.addEventListener('heartbeat', (e) => {
+        lastEventId = e.lastEventId;
+        totalEvents++;
+        heartbeatCount++;
+        updateStats();
+
+        appendLog('connectionLog',
+            `💓 heartbeat | id=${e.lastEventId}`,
+            'log-event');
+        appendEventBlock('heartbeat', e.lastEventId, e.data);
+    });
+
+    // --- onerror (연결 끊김 / 재연결 트리거) ---
+    eventSource.onerror = (e) => {
+        const state = eventSource.readyState;
+        // readyState: 0=CONNECTING, 1=OPEN, 2=CLOSED
+        if (state === EventSource.CONNECTING) {
+            reconnectCount++;
+            updateStats();
+            setStatus('connecting');
+            stopTimer();
+
+            appendLog('reconnectLog',
+                `🔄 연결 끊김 감지! 재연결 시도 중... (재연결 횟수: ${reconnectCount})`,
+                'log-warn');
+            appendLog('reconnectLog',
+                `   Last-Event-ID: ${lastEventId ?? '없음'} → 재연결 요청 헤더에 포함`,
+                'log-proto');
+
+        } else if (state === EventSource.CLOSED) {
+            setStatus('disconnected');
+            stopTimer();
+            appendLog('connectionLog', '❌ 연결 완전 종료 (EventSource closed)', 'log-error');
+            document.getElementById('btnConnect').disabled = false;
+            document.getElementById('btnDisconnect').disabled = true;
+        }
+    };
+
+    // EventSource의 재연결 후 connected 이벤트가 오면 위 핸들러에서 처리
+    // 재연결 성공 시 추가 로그
+    eventSource.addEventListener('connected', (e) => {
+        if (reconnectCount > 0) {
+            setStatus('connected');
+            startTimer();
+            appendLog('reconnectLog',
+                `✅ 재연결 성공! id=${e.lastEventId} | 서버가 Last-Event-ID 인식`,
+                'log-success');
+        }
+    });
+}
+
+// ============================================================
+// [단계 1] 브라우저 측 연결 종료
+// ============================================================
+function disconnectSSE() {
+    if (!eventSource) return;
+    eventSource.close();
+    eventSource = null;
+    setStatus('disconnected');
+    stopTimer();
+    document.getElementById('btnConnect').disabled = false;
+    document.getElementById('btnDisconnect').disabled = true;
+    appendLog('connectionLog', '🔌 클라이언트가 연결을 끊었습니다 (eventSource.close())', 'log-warn');
+}
+
+// ============================================================
+// [단계 2] 메시지 전송
+// ============================================================
+async function sendMessage() {
+    const clientId = document.getElementById('clientId').value.trim();
+    const message  = document.getElementById('msgInput').value.trim();
+    if (!message) { alert('메시지를 입력하세요'); return; }
+
+    appendLog('commLog', `📤 전송 요청: clientId=${clientId}, message=${message}`, 'log-info');
+
+    try {
+        const res = await fetch(`/sse/send/${clientId}?message=${encodeURIComponent(message)}`, {
+            method: 'POST'
+        });
+        const text = await res.text();
+        appendLog('commLog', `   서버 응답: ${text}`, res.ok ? 'log-success' : 'log-error');
+    } catch (err) {
+        appendLog('commLog', `   오류: ${err.message}`, 'log-error');
+    }
+}
+
+async function broadcast() {
+    const message = document.getElementById('msgInput').value.trim();
+    if (!message) { alert('메시지를 입력하세요'); return; }
+
+    appendLog('commLog', `📢 브로드캐스트: message=${message}`, 'log-event');
+
+    try {
+        const res = await fetch(`/sse/broadcast?message=${encodeURIComponent(message)}`, {
+            method: 'POST'
+        });
+        const text = await res.text();
+        appendLog('commLog', `   서버 응답: ${text}`, res.ok ? 'log-success' : 'log-error');
+    } catch (err) {
+        appendLog('commLog', `   오류: ${err.message}`, 'log-error');
+    }
+}
+
+// ============================================================
+// [단계 3] 서버 강제 종료 → 재연결 유도
+// ============================================================
+async function forceDisconnect() {
+    const clientId = document.getElementById('clientId').value.trim();
+
+    appendLog('reconnectLog', `⚡ 서버 강제 종료 요청: clientId=${clientId}`, 'log-warn');
+    appendLog('reconnectLog', `   POST /sse/disconnect/${clientId}`, 'log-proto');
+
+    try {
+        const res = await fetch(`/sse/disconnect/${clientId}`, { method: 'POST' });
+        const text = await res.text();
+        appendLog('reconnectLog', `   서버 응답: ${text}`, 'log-info');
+        appendLog('reconnectLog',
+            `   ⏱ 브라우저 EventSource가 ~3초 후 자동 재연결 시도합니다...`, 'log-warn');
+    } catch (err) {
+        appendLog('reconnectLog', `   오류: ${err.message}`, 'log-error');
+    }
+}
+
+// ============================================================
+// 이벤트 스트림 지우기
+// ============================================================
+function clearEvents() {
+    const el = document.getElementById('eventVisual');
+    el.innerHTML = '<div style="color:var(--muted); font-size:0.75rem; padding:6px;">비워졌습니다.</div>';
+    totalEvents = 0; messageCount = 0; heartbeatCount = 0;
+    updateStats();
+}
+</script>
+
+</body>
+</html>

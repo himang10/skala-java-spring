@@ -1,0 +1,8 @@
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/SwaggerApplication.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/controller/EmployeeController.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/model/Department.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/model/Employee.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/repository/DepartmentRepository.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/repository/EmployeeRepository.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/service/DepartmentService.java
+/Users/himang10/mydev/skala/skala-cloud/skala-java-spring/02.spring/02.answer-code/11.swagger/src/main/java/com/sk/skala/jpasample/service/EmployeeService.java
